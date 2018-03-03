@@ -24,6 +24,7 @@ for (subdirs, dirs, files) in os.walk(path):
 PCA principle component analysis
 '''
 '''
+The content of this comment is done to shuffle the data and then feed it to the model. 
 p = numpy.random.permutation(len(train_images)) 
 train_images = train_images[p]
 labels = labels[p]
