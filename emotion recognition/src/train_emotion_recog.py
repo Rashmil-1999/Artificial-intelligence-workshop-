@@ -19,7 +19,7 @@ from itertools import repeat
 import importlib
 from cnn_model import buildCNNModel
 #from cnn_model_V2 import buildCnnModel
-num_classes = 6
+
 
 
 def listALLFiles(path, formats=['png','jpg','jpeg','tif']):
@@ -37,11 +37,11 @@ def preProcessImage(path,img_width ,img_height):
     img /= 255    
     return img
 
-def prepareData(size):
+def prepareData(size, path):
     input_samples = []
     output_labels = []
     for _class in range(num_classes):
-        path = '../dataset/ferDataset/%d' %(_class)
+        path = path + str(_class)
         length = len(os.listdir(path))
         samples = numpy.array(list(map(preProcessImage,listALLFiles(path),repeat(size[0], length),repeat(size[1],length))))
         input_samples.append(samples)
@@ -62,10 +62,12 @@ def prepareData(size):
     return inputs , outputs
 
 if __name__ == '__main__':
+    num_classes = 6
     no_of_epochs = 5
     emotion_models_path = '../trained_model/emotion_models/'
     size = [64,64]
-    inputs, outputs = prepareData(size) 
+    pathToDataset = "../dataset/ferDataset/"
+    inputs, outputs = prepareData(size, pathToDataset) 
     inputs = inputs.reshape(inputs.shape[0],inputs.shape[1],inputs.shape[2],1)
     num_of_samples = len(inputs)
     train_data_length = int(num_of_samples*0.8)
