@@ -1,0 +1,9 @@
+./dataset/ferDataset/0
+./dataset/ferDataset/1
+./dataset/ferDataset/2
+./dataset/ferDataset/3
+./dataset/ferDataset/4
+./dataset/ferDataset/5
+
+./src/__pycache__
+./src/.ipynb_checkpoints
